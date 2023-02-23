@@ -9,9 +9,11 @@ import dagger.hilt.android.AndroidEntryPoint
 
 /*
  *
- *  TODO: Fazer o recyclerView destes items
+ *  TODO: Corrigir o funcionamento dos Switchs em cada item do recyclerView
  *
- *  TODO: Implementar a ação de adicionar novo alarme para testar recyclerView
+ *  TODO: Criar tela de formulário par novo Despertador
+ *
+ *  TODO: Fazer ele reproduzir audios
  *
  */
 
