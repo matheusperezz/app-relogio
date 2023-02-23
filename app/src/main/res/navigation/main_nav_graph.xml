@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/main_nav_graph"
+    app:startDestination="@id/alarmClockFragment">
+
+    <fragment
+        android:id="@+id/alarmClockFragment"
+        android:name="com.vanquish.despertador.ui.fragments.AlarmClockFragment"
+        android:label="fragment_alarm_clock"
+        tools:layout="@layout/fragment_alarm_clock" >
+        <action
+            android:id="@+id/action_alarmClockFragment_to_newAlarmFragment"
+            app:destination="@id/newAlarmFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/weatherFragment"
+        android:name="com.vanquish.despertador.ui.fragments.WeatherFragment"
+        android:label="fragment_weather"
+        tools:layout="@layout/fragment_weather" />
+    <fragment
+        android:id="@+id/watchFragment"
+        android:name="com.vanquish.despertador.ui.fragments.WatchFragment"
+        android:label="fragment_watch"
+        tools:layout="@layout/fragment_watch" />
+    <fragment
+        android:id="@+id/newAlarmFragment"
+        android:name="com.vanquish.despertador.ui.fragments.NewAlarmFragment"
+        android:label="fragment_new_alarm"
+        tools:layout="@layout/fragment_new_alarm" />
+</navigation>

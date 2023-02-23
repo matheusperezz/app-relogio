@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <item
+        android:id="@+id/alarmClockFragment"
+        android:icon="@drawable/ic_alarm"
+        android:title="Despertador" />
+
+    <item
+        android:id="@+id/watchFragment"
+        android:icon="@drawable/ic_timer"
+        android:title="Cronômetro" />
+
+    <item
+        android:id="@+id/weatherFragment"
+        android:icon="@drawable/ic_cloud"
+        android:title="Clima" />
+</menu>
