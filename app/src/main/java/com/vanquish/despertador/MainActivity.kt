@@ -9,7 +9,6 @@ import dagger.hilt.android.AndroidEntryPoint
 
 /*
  *
- *  TODO: Corrigir o funcionamento dos Switchs em cada item do recyclerView
  *
  *  TODO: Criar tela de formulário par novo Despertador
  *

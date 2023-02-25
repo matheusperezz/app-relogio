@@ -32,7 +32,7 @@
                 android:ellipsize="end"
                 android:maxLines="1"
                 android:text="RemédioRemédioRemédioRemédioRemédioRemédio"
-                android:textSize="18sp"
+                android:textSize="16sp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
@@ -43,7 +43,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="8dp"
                 android:text="10:00"
-                android:textSize="32sp"
+                android:textSize="30sp"
                 app:layout_constraintStart_toStartOf="@+id/textViewAlarmTitle"
                 app:layout_constraintTop_toBottomOf="@+id/textViewAlarmTitle" />
 

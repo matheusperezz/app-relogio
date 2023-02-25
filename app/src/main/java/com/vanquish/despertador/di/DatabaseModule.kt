@@ -5,6 +5,7 @@ import androidx.room.Room
 import com.vanquish.despertador.database.AppDatabase
 import com.vanquish.despertador.database.converters.Converters
 import com.vanquish.despertador.database.dao.AlarmDao
+import com.vanquish.despertador.database.migrations.MIGRATION_1_2
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
@@ -25,7 +26,9 @@ class DatabaseModule {
             context,
             AppDatabase::class.java,
             DATABASE_NAME
-        ).build()
+        )   .fallbackToDestructiveMigration()
+            .addMigrations(MIGRATION_1_2)
+            .build()
     }
 
     @Provides

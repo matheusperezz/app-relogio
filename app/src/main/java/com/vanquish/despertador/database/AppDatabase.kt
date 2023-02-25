@@ -7,10 +7,11 @@ import com.vanquish.despertador.database.converters.Converters
 import com.vanquish.despertador.database.dao.AlarmDao
 import com.vanquish.despertador.database.models.Alarm
 
-@Database(entities = [Alarm::class], version = 1)
+@Database(entities = [Alarm::class], version = 2)
 @TypeConverters(Converters::class)
 abstract class AppDatabase: RoomDatabase() {
 
     abstract fun alarmDao(): AlarmDao
+
 
 }

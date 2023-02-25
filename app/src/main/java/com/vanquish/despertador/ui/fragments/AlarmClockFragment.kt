@@ -11,21 +11,22 @@ import androidx.annotation.RequiresApi
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.lifecycleScope
-import androidx.navigation.fragment.findNavController
-import com.vanquish.despertador.R
 import com.vanquish.despertador.database.models.Alarm
+import com.vanquish.despertador.database.models.AlarmNew
 import com.vanquish.despertador.databinding.FragmentAlarmClockBinding
 import com.vanquish.despertador.extensions.toHourMinuteFormat
 import com.vanquish.despertador.ui.adapter.AlarmAdapter
 import com.vanquish.despertador.ui.viewmodels.AlarmClockViewModel
 import dagger.hilt.android.AndroidEntryPoint
 import dagger.hilt.android.scopes.FragmentScoped
+import kotlinx.coroutines.flow.collect
 import kotlinx.coroutines.launch
 import java.time.DayOfWeek
 import java.time.LocalTime
 
 @AndroidEntryPoint
 @FragmentScoped
+@RequiresApi(Build.VERSION_CODES.O)
 class AlarmClockFragment : Fragment() {
 
     private lateinit var binding: FragmentAlarmClockBinding
@@ -38,7 +39,7 @@ class AlarmClockFragment : Fragment() {
         return binding.root
     }
 
-    @RequiresApi(Build.VERSION_CODES.O)
+
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         val alarmClockViewModel: AlarmClockViewModel by viewModels()
@@ -47,15 +48,12 @@ class AlarmClockFragment : Fragment() {
             // findNavController().navigate(R.id.action_alarmClockFragment_to_newAlarmFragment)
             val localTime = LocalTime.now()
             val daysOfWeek = DayOfWeek.FRIDAY
-
-
             lifecycleScope.launch {
-                alarmClockViewModel.insert(
+                alarmClockViewModel.insertAlarm(
                     Alarm(
                         0L,
                         localTime.toString(),
                         daysOfWeek.toString(),
-                        false,
                         "",
                         "Ta na hora de acordar"
                     )
@@ -65,17 +63,22 @@ class AlarmClockFragment : Fragment() {
 
         lifecycleScope.launch {
             alarmClockViewModel.getAllAlarms.collect { alarmList ->
-                binding.recyclerViewAlarms.adapter = AlarmAdapter(alarmList) {
-                    Toast.makeText(
-                        requireContext(),
-                        "Alarm: ${it.label}\nHour: ${toHourMinuteFormat(it.timeString)}",
-                        Toast.LENGTH_LONG
-                    ).show()
-                }
+                binding.recyclerViewAlarms.adapter = AlarmAdapter(
+                    alarms = alarmList,
+                    onClick = { setOnClickCardAlarm(it) }
+                )
             }
         }
 
     }
 
+    @RequiresApi(Build.VERSION_CODES.O)
+    private fun setOnClickCardAlarm(alarm: Alarm) {
+        Toast.makeText(
+            requireContext(),
+            "Alarm: ${alarm.label}\nHour: ${toHourMinuteFormat(alarm.timeString)}",
+            Toast.LENGTH_LONG
+        ).show()
+    }
 
 }
