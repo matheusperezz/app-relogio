@@ -1,4 +1,4 @@
-package com.vanquish.despertador.ui.fragments
+package com.vanquish.despertador.ui.fragments.alarmList
 
 import android.os.Build
 import android.os.Bundle
@@ -11,6 +11,8 @@ import androidx.annotation.RequiresApi
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.lifecycleScope
+import androidx.navigation.fragment.findNavController
+import com.vanquish.despertador.R
 import com.vanquish.despertador.database.models.Alarm
 import com.vanquish.despertador.database.models.AlarmNew
 import com.vanquish.despertador.databinding.FragmentAlarmClockBinding
@@ -45,20 +47,20 @@ class AlarmClockFragment : Fragment() {
         val alarmClockViewModel: AlarmClockViewModel by viewModels()
 
         binding.fabNewAlarm.setOnClickListener {
-            // findNavController().navigate(R.id.action_alarmClockFragment_to_newAlarmFragment)
-            val localTime = LocalTime.now()
-            val daysOfWeek = DayOfWeek.FRIDAY
-            lifecycleScope.launch {
-                alarmClockViewModel.insertAlarm(
-                    Alarm(
-                        0L,
-                        localTime.toString(),
-                        daysOfWeek.toString(),
-                        "",
-                        "Ta na hora de acordar"
-                    )
-                )
-            }
+            findNavController().navigate(R.id.action_alarmClockFragment_to_newAlarmFragment)
+//            val localTime = LocalTime.now()
+//            val daysOfWeek = DayOfWeek.FRIDAY
+//            lifecycleScope.launch {
+//                alarmClockViewModel.insertAlarm(
+//                    Alarm(
+//                        0L,
+//                        localTime.toString(),
+//                        daysOfWeek.toString(),
+//                        "",
+//                        "Ta na hora de acordar"
+//                    )
+//                )
+//            }
         }
 
         lifecycleScope.launch {

@@ -9,10 +9,13 @@ import dagger.hilt.android.AndroidEntryPoint
 
 /*
  *
+ *  TODO: Fazer o despertador tocar um som qualquer
  *
- *  TODO: Criar tela de formulário par novo Despertador
+ *  TODO: Exibir tela de detalhes do alarme (Formulário já preenchido basicamente, permitindo edição)
  *
- *  TODO: Fazer ele reproduzir audios
+ *  TODO: Permitir a exclusão de alarmes
+ *
+ *  TODO: Implementar a tela do alarme tocando
  *
  */
 
