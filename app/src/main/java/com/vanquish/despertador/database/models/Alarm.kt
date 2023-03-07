@@ -2,6 +2,7 @@ package com.vanquish.despertador.database.models
 
 import androidx.room.Entity
 import androidx.room.PrimaryKey
+import java.io.Serializable
 
 @Entity
 data class Alarm(
@@ -11,4 +12,4 @@ data class Alarm(
     val daysOfWeekString: String,
     val soundUriString: String,
     val label: String
-)
+): Serializable

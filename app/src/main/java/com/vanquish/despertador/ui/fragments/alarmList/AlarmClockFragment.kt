@@ -1,5 +1,10 @@
 package com.vanquish.despertador.ui.fragments.alarmList
 
+import android.app.AlarmManager
+import android.app.PendingIntent
+import android.content.Context
+import android.content.Intent
+import android.media.MediaPlayer
 import android.os.Build
 import android.os.Bundle
 import android.util.Log
@@ -20,6 +25,7 @@ import com.vanquish.despertador.extensions.toHourMinuteFormat
 import com.vanquish.despertador.ui.adapter.AlarmAdapter
 import com.vanquish.despertador.ui.viewmodels.AlarmClockViewModel
 import dagger.hilt.android.AndroidEntryPoint
+import dagger.hilt.android.internal.Contexts.getApplication
 import dagger.hilt.android.scopes.FragmentScoped
 import kotlinx.coroutines.flow.collect
 import kotlinx.coroutines.launch
@@ -45,42 +51,24 @@ class AlarmClockFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         val alarmClockViewModel: AlarmClockViewModel by viewModels()
+        val navController = findNavController()
 
         binding.fabNewAlarm.setOnClickListener {
-            findNavController().navigate(R.id.action_alarmClockFragment_to_newAlarmFragment)
-//            val localTime = LocalTime.now()
-//            val daysOfWeek = DayOfWeek.FRIDAY
-//            lifecycleScope.launch {
-//                alarmClockViewModel.insertAlarm(
-//                    Alarm(
-//                        0L,
-//                        localTime.toString(),
-//                        daysOfWeek.toString(),
-//                        "",
-//                        "Ta na hora de acordar"
-//                    )
-//                )
-//            }
+            navController.navigate(R.id.action_alarmClockFragment_to_newAlarmFragment)
         }
 
         lifecycleScope.launch {
             alarmClockViewModel.getAllAlarms.collect { alarmList ->
                 binding.recyclerViewAlarms.adapter = AlarmAdapter(
                     alarms = alarmList,
-                    onClick = { setOnClickCardAlarm(it) }
+                    onClick = {
+                        alarmClockViewModel.setOnClickCardAlarm(it, requireContext(), navController)
+                        // alarmClockViewModel.setAlarm(requireContext())
+                    }
                 )
             }
         }
 
-    }
-
-    @RequiresApi(Build.VERSION_CODES.O)
-    private fun setOnClickCardAlarm(alarm: Alarm) {
-        Toast.makeText(
-            requireContext(),
-            "Alarm: ${alarm.label}\nHour: ${toHourMinuteFormat(alarm.timeString)}",
-            Toast.LENGTH_LONG
-        ).show()
     }
 
 }

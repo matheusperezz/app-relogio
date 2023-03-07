@@ -12,7 +12,11 @@
         tools:layout="@layout/fragment_alarm_clock" >
         <action
             android:id="@+id/action_alarmClockFragment_to_newAlarmFragment"
-            app:destination="@id/newAlarmFragment" />
+            app:destination="@id/newAlarmFragment"
+            app:enterAnim="@android:anim/accelerate_interpolator" />
+        <action
+            android:id="@+id/action_alarmClockFragment_to_updateAlarmFragment"
+            app:destination="@id/updateAlarmFragment" />
     </fragment>
     <fragment
         android:id="@+id/weatherFragment"
@@ -29,4 +33,9 @@
         android:name="com.vanquish.despertador.ui.fragments.alarmList.NewAlarmFragment"
         android:label="fragment_new_alarm"
         tools:layout="@layout/fragment_new_alarm" />
+    <fragment
+        android:id="@+id/updateAlarmFragment"
+        android:name="com.vanquish.despertador.ui.fragments.alarmList.UpdateAlarmFragment"
+        android:label="fragment_update_alarm"
+        tools:layout="@layout/fragment_update_alarm" />
 </navigation>

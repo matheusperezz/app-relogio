@@ -9,9 +9,9 @@ import dagger.hilt.android.AndroidEntryPoint
 
 /*
  *
- *  TODO: Fazer o despertador tocar um som qualquer
+ *  TODO: Fazer o TimePicker funcionar na tela de Update
  *
- *  TODO: Exibir tela de detalhes do alarme (Formulário já preenchido basicamente, permitindo edição)
+ *  TODO: Fazer o alarme tocar um som quando der seu horário
  *
  *  TODO: Permitir a exclusão de alarmes
  *
