@@ -63,7 +63,6 @@ class AlarmClockFragment : Fragment() {
                     alarms = alarmList,
                     onClick = {
                         alarmClockViewModel.setOnClickCardAlarm(it, requireContext(), navController)
-                        // alarmClockViewModel.setAlarm(requireContext())
                     }
                 )
             }

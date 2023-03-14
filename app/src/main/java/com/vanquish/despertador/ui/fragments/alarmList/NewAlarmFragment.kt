@@ -14,6 +14,7 @@ import com.google.android.material.timepicker.MaterialTimePicker
 import com.google.android.material.timepicker.TimeFormat
 import com.vanquish.despertador.database.models.Alarm
 import com.vanquish.despertador.databinding.FragmentNewAlarmBinding
+import com.vanquish.despertador.ui.utils.showTimePicker
 import com.vanquish.despertador.ui.viewmodels.AlarmClockViewModel
 import dagger.hilt.android.AndroidEntryPoint
 import dagger.hilt.android.scopes.FragmentScoped
@@ -42,7 +43,7 @@ class NewAlarmFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
         val alarmClockViewModel: AlarmClockViewModel by viewModels()
         binding.imageButtonStartTimePicker.setOnClickListener {
-            showTimePicker()
+            showTimePicker(parentFragmentManager, binding.textInputNewAlarmTime)
         }
 
         binding.buttonNewAlarmCancel.setOnClickListener {
@@ -72,25 +73,6 @@ class NewAlarmFragment : Fragment() {
             }
         }
 
-    }
-
-    private fun showTimePicker() {
-        val picker =
-            MaterialTimePicker.Builder()
-                .setTimeFormat(TimeFormat.CLOCK_24H)
-                .setHour(12)
-                .setMinute(10)
-                .setNegativeButtonText("Cancelar")
-                .setTitleText("Escolha um horário")
-                .build()
-        picker.show(parentFragmentManager, "tag")
-
-        picker.addOnPositiveButtonClickListener {
-            val hour = picker.hour
-            val minute = picker.minute
-            val time = String.format(Locale.getDefault(), "%02d:%02d", hour, minute)
-            binding.textInputNewAlarmTime.editText?.setText(time)
-        }
     }
 
 }

@@ -9,18 +9,24 @@ import android.view.ViewGroup
 import android.widget.Toast
 import androidx.annotation.RequiresApi
 import androidx.fragment.app.Fragment
+import androidx.fragment.app.FragmentManager
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
+import com.google.android.material.textfield.TextInputLayout
+import com.google.android.material.timepicker.MaterialTimePicker
+import com.google.android.material.timepicker.TimeFormat
 import com.vanquish.despertador.database.models.Alarm
 import com.vanquish.despertador.databinding.FragmentUpdateAlarmBinding
 import com.vanquish.despertador.extensions.toHourMinuteFormat
+import com.vanquish.despertador.ui.utils.showTimePicker
 import com.vanquish.despertador.ui.viewmodels.UpdateAlarmViewModel
 import dagger.hilt.android.AndroidEntryPoint
 import dagger.hilt.android.scopes.FragmentScoped
 import kotlinx.coroutines.launch
 import java.io.Serializable
 import java.time.DayOfWeek
+import java.util.Locale
 
 @RequiresApi(Build.VERSION_CODES.O)
 @FragmentScoped
@@ -44,8 +50,11 @@ class UpdateAlarmFragment : Fragment() {
         val alarm = requireArguments().getSerializable("Alarm") as Alarm
         bindAlarmData(alarm)
 
+        binding.buttonNewAlarmCancel.setOnClickListener {
+            findNavController().popBackStack()
+        }
+
         binding.buttonNewAlarmSave.setOnClickListener {
-            Toast.makeText(requireContext(), "Atualizou tlgd", Toast.LENGTH_LONG).show()
             val alarmName = binding.textInputNewAlarmName.editText?.text.toString()
             val alarmTime = binding.textInputNewAlarmTime.editText?.text.toString()
             val updatedAlarm = Alarm(
@@ -63,8 +72,17 @@ class UpdateAlarmFragment : Fragment() {
             findNavController().popBackStack()
         }
 
-    }
+        binding.imageButtonStartTimePicker.setOnClickListener {
+            val (hour, minute) = updateTimePickerInput(alarm)
+            showTimePicker(
+                parentFragmentManager,
+                binding.textInputNewAlarmTime,
+                hour,
+                minute
+            )
+        }
 
+    }
 
     private fun bindAlarmData(alarm: Alarm) {
         val editableInstance = Editable.Factory.getInstance()
@@ -72,4 +90,12 @@ class UpdateAlarmFragment : Fragment() {
         binding.textInputNewAlarmTime.editText?.text =
             editableInstance.newEditable(toHourMinuteFormat(alarm.timeString))
     }
+
+    private fun updateTimePickerInput(alarm: Alarm): Pair<Int, Int>{
+        val (hourString, minuteString) = toHourMinuteFormat(alarm.timeString).split(":")
+        val hour = hourString.toInt()
+        val minute = minuteString.toInt()
+        return Pair(hour, minute)
+    }
+
 }

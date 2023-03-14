@@ -21,6 +21,8 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import androidx.navigation.NavController
+import com.google.android.material.timepicker.MaterialTimePicker
+import com.google.android.material.timepicker.TimeFormat
 import com.vanquish.despertador.AlarmReceiver
 import com.vanquish.despertador.R
 import com.vanquish.despertador.database.models.Alarm
@@ -34,6 +36,7 @@ import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
 import java.util.Calendar
+import java.util.Locale
 import javax.inject.Inject
 import kotlin.coroutines.coroutineContext
 
@@ -74,12 +77,12 @@ class AlarmClockViewModel @Inject constructor(private val alarmRepository: Alarm
     }
 
 
-
     @SuppressLint("ScheduleExactAlarm")
-    fun setAlarm(context: Context){
+    fun setAlarm(context: Context) {
         val alarmManager = context.getSystemService(ALARM_SERVICE) as? AlarmManager
         val intent = Intent(context, AlarmReceiver::class.java)
-        val pendingIntent = PendingIntent.getBroadcast(context, 0, intent, PendingIntent.FLAG_IMMUTABLE)
+        val pendingIntent =
+            PendingIntent.getBroadcast(context, 0, intent, PendingIntent.FLAG_IMMUTABLE)
 
         val calendar = Calendar.getInstance().apply {
             timeInMillis = System.currentTimeMillis()
@@ -93,5 +96,6 @@ class AlarmClockViewModel @Inject constructor(private val alarmRepository: Alarm
             pendingIntent
         )
     }
+
 
 }
