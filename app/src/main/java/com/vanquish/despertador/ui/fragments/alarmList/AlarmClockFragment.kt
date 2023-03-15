@@ -4,33 +4,25 @@ import android.app.AlarmManager
 import android.app.PendingIntent
 import android.content.Context
 import android.content.Intent
-import android.media.MediaPlayer
 import android.os.Build
 import android.os.Bundle
-import android.util.Log
+import android.os.SystemClock
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Toast
 import androidx.annotation.RequiresApi
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
+import com.vanquish.despertador.AlarmReceiver
 import com.vanquish.despertador.R
-import com.vanquish.despertador.database.models.Alarm
-import com.vanquish.despertador.database.models.AlarmNew
 import com.vanquish.despertador.databinding.FragmentAlarmClockBinding
-import com.vanquish.despertador.extensions.toHourMinuteFormat
 import com.vanquish.despertador.ui.adapter.AlarmAdapter
 import com.vanquish.despertador.ui.viewmodels.AlarmClockViewModel
 import dagger.hilt.android.AndroidEntryPoint
-import dagger.hilt.android.internal.Contexts.getApplication
 import dagger.hilt.android.scopes.FragmentScoped
-import kotlinx.coroutines.flow.collect
 import kotlinx.coroutines.launch
-import java.time.DayOfWeek
-import java.time.LocalTime
 
 @AndroidEntryPoint
 @FragmentScoped
@@ -67,6 +59,7 @@ class AlarmClockFragment : Fragment() {
                 )
             }
         }
+
 
     }
 

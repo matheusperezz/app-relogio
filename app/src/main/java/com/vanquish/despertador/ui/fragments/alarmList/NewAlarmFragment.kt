@@ -59,15 +59,16 @@ class NewAlarmFragment : Fragment() {
                 val alarmTime = binding.textInputNewAlarmTime.editText?.text?.toString()!!
                 val alarmName = binding.textInputNewAlarmName.editText?.text?.toString()!!
                 lifecycleScope.launch {
-                    alarmClockViewModel.insertAlarm(
-                        Alarm(
-                            0L,
-                            alarmTime,
-                            DayOfWeek.FRIDAY.toString(),
-                            "",
-                            alarmName
-                        )
+                    val newAlarm = Alarm(
+                        0L,
+                        alarmTime,
+                        DayOfWeek.FRIDAY.toString(),
+                        "",
+                        alarmName
                     )
+
+                    alarmClockViewModel.insertAlarm(newAlarm)
+                    alarmClockViewModel.setAlarm(requireContext(), newAlarm)
                 }
                 findNavController().popBackStack()
             }

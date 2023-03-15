@@ -78,16 +78,21 @@ class AlarmClockViewModel @Inject constructor(private val alarmRepository: Alarm
 
 
     @SuppressLint("ScheduleExactAlarm")
-    fun setAlarm(context: Context) {
-        val alarmManager = context.getSystemService(ALARM_SERVICE) as? AlarmManager
+    fun setAlarm(context: Context, alarm: Alarm) {
+        val alarmManager = context.getSystemService(Context.ALARM_SERVICE) as? AlarmManager
         val intent = Intent(context, AlarmReceiver::class.java)
-        val pendingIntent =
-            PendingIntent.getBroadcast(context, 0, intent, PendingIntent.FLAG_IMMUTABLE)
+        val pendingIntent = PendingIntent.getBroadcast(context, 0, intent, PendingIntent.FLAG_IMMUTABLE)
+
+        val regex = "(\\d+):(\\d+)".toRegex()
+        val matchResult = regex.matchEntire(alarm.timeString)
+        val hour = matchResult?.groupValues?.get(1)?.toInt()
+        val minute = matchResult?.groupValues?.get(2)?.toInt()
+
 
         val calendar = Calendar.getInstance().apply {
             timeInMillis = System.currentTimeMillis()
-            set(Calendar.HOUR_OF_DAY, 15)
-            set(Calendar.MINUTE, 44)
+            set(Calendar.HOUR_OF_DAY, hour!!)
+            set(Calendar.MINUTE, minute!!)
         }
 
         alarmManager?.setExactAndAllowWhileIdle(

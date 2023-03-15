@@ -68,7 +68,7 @@ class UpdateAlarmFragment : Fragment() {
             lifecycleScope.launch {
                 viewModel.updateAlarm(updatedAlarm)
             }
-
+            viewModel.setAlarm(requireContext(), updatedAlarm)
             findNavController().popBackStack()
         }
 
