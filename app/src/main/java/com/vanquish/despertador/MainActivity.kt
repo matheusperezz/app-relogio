@@ -9,8 +9,6 @@ import dagger.hilt.android.AndroidEntryPoint
 
 /*
  *
- *  TODO: Fazer o alarme tocar um som quando der seu horário
- *
  *  TODO: Permitir a exclusão de alarmes
  *
  *  TODO: Implementar a tela do alarme tocando

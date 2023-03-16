@@ -18,6 +18,10 @@ class AlarmRepository @Inject constructor(private val alarmDao: AlarmDao) {
         alarmDao.updateAlarm(alarm)
     }
 
+    suspend fun deleteAlarm(alarm: Alarm){
+        alarmDao.deleteAlarm(alarm)
+    }
+
     fun getAlarm(alarmId: Long): Flow<Alarm?> {
         return alarmDao.getAlarm(alarmId)
     }

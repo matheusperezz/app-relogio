@@ -4,41 +4,20 @@ import android.annotation.SuppressLint
 import android.app.AlarmManager
 import android.app.PendingIntent
 import android.content.Context
-import android.content.Context.ALARM_SERVICE
 import android.content.Intent
-import android.media.MediaPlayer
 import android.os.Build
 import android.os.Bundle
-import android.util.Log
-import android.widget.Toast
 import androidx.annotation.RequiresApi
-import androidx.core.content.ContentProviderCompat.requireContext
-import androidx.core.content.ContextCompat.getSystemService
-import androidx.core.content.getSystemService
-import androidx.core.os.bundleOf
-import androidx.lifecycle.LiveData
-import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
-import androidx.lifecycle.viewModelScope
 import androidx.navigation.NavController
-import com.google.android.material.timepicker.MaterialTimePicker
-import com.google.android.material.timepicker.TimeFormat
 import com.vanquish.despertador.AlarmReceiver
 import com.vanquish.despertador.R
 import com.vanquish.despertador.database.models.Alarm
-import com.vanquish.despertador.database.models.AlarmNew
 import com.vanquish.despertador.database.repository.AlarmRepository
-import com.vanquish.despertador.extensions.toHourMinuteFormat
-import com.vanquish.despertador.ui.fragments.alarmList.AlarmClockFragment
 import dagger.hilt.android.lifecycle.HiltViewModel
-import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.Flow
-import kotlinx.coroutines.launch
-import kotlinx.coroutines.withContext
 import java.util.Calendar
-import java.util.Locale
 import javax.inject.Inject
-import kotlin.coroutines.coroutineContext
 
 @RequiresApi(Build.VERSION_CODES.O)
 @HiltViewModel
@@ -56,6 +35,10 @@ class AlarmClockViewModel @Inject constructor(private val alarmRepository: Alarm
 
     suspend fun updateAlarm(alarm: Alarm) {
         alarmRepository.updateAlarm(alarm)
+    }
+
+    suspend fun deleteAlarm(alarm: Alarm){
+        alarmRepository.deleteAlarm(alarm)
     }
 
     @RequiresApi(Build.VERSION_CODES.O)

@@ -1,33 +1,21 @@
 package com.vanquish.despertador.ui.adapter
 
 import android.os.Build
-import android.util.Log
 import android.util.SparseBooleanArray
 import android.view.LayoutInflater
-import android.view.View
 import android.view.ViewGroup
 import android.widget.Switch
 import android.widget.TextView
-import android.widget.Toast
 import androidx.annotation.RequiresApi
-import androidx.core.util.forEach
 import androidx.recyclerview.widget.RecyclerView
-import com.vanquish.despertador.R
 import com.vanquish.despertador.database.models.Alarm
-import com.vanquish.despertador.database.models.AlarmNew
 import com.vanquish.despertador.databinding.ResItemAlarmBinding
 import com.vanquish.despertador.extensions.toHourMinuteFormat
-import com.vanquish.despertador.ui.viewmodels.AlarmClockViewModel
-import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.coroutineScope
-import kotlinx.coroutines.flow.collect
-import java.time.LocalTime
-import java.time.format.DateTimeFormatter
-import kotlin.math.log
 
 @RequiresApi(Build.VERSION_CODES.O)
 class AlarmAdapter(
     private val alarms: List<Alarm>,
+    private val onLongPress: (Alarm) -> Unit = {},
     private val onClick: (Alarm) -> Unit = {},
 ) : RecyclerView.Adapter<AlarmAdapter.ViewHolder>() {
 
@@ -55,6 +43,10 @@ class AlarmAdapter(
             }
             itemView.setOnClickListener {
                 onClick(alarm)
+            }
+            itemView.setOnLongClickListener {
+                onLongPress(alarm)
+                true
             }
         }
 

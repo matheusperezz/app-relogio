@@ -1,12 +1,8 @@
 package com.vanquish.despertador.ui.fragments.alarmList
 
-import android.app.AlarmManager
-import android.app.PendingIntent
-import android.content.Context
-import android.content.Intent
+import android.app.AlertDialog
 import android.os.Build
 import android.os.Bundle
-import android.os.SystemClock
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -15,7 +11,6 @@ import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
-import com.vanquish.despertador.AlarmReceiver
 import com.vanquish.despertador.R
 import com.vanquish.despertador.databinding.FragmentAlarmClockBinding
 import com.vanquish.despertador.ui.adapter.AlarmAdapter
@@ -53,6 +48,18 @@ class AlarmClockFragment : Fragment() {
             alarmClockViewModel.getAllAlarms.collect { alarmList ->
                 binding.recyclerViewAlarms.adapter = AlarmAdapter(
                     alarms = alarmList,
+                    onLongPress = {
+                        val dialog = AlertDialog.Builder(context)
+                        dialog
+                            .setMessage("Você realmente deseja deletar o alarme: ${it.label}")
+                            .setPositiveButton("Apagar") { _, _ ->
+                                lifecycleScope.launch {
+                                    alarmClockViewModel.deleteAlarm(it)
+                                }
+                            }
+                            .setNegativeButton("Cancelar"){ _, _ -> }
+                            .create().show()
+                    },
                     onClick = {
                         alarmClockViewModel.setOnClickCardAlarm(it, requireContext(), navController)
                     }

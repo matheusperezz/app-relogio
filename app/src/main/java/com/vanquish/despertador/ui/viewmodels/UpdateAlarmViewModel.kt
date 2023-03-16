@@ -5,14 +5,11 @@ import android.app.AlarmManager
 import android.app.PendingIntent
 import android.content.Context
 import android.content.Intent
-import android.util.Log
-import android.widget.Toast
 import androidx.lifecycle.ViewModel
 import com.vanquish.despertador.AlarmReceiver
 import com.vanquish.despertador.database.models.Alarm
 import com.vanquish.despertador.database.repository.AlarmRepository
 import dagger.hilt.android.lifecycle.HiltViewModel
-import kotlinx.coroutines.flow.Flow
 import java.util.Calendar
 import javax.inject.Inject
 
@@ -20,19 +17,9 @@ import javax.inject.Inject
 class UpdateAlarmViewModel @Inject constructor(private val alarmRepository: AlarmRepository) :
     ViewModel() {
 
-    val getAllAlarms: Flow<List<Alarm>> = alarmRepository.getAllAlarms
-
-    fun getAlarm(alarm: Alarm): Flow<Alarm?> = alarmRepository.getAlarm(alarmId = alarm.id)
-
-
-    suspend fun insertAlarm(alarm: Alarm) {
-        alarmRepository.insertAlarm(alarm)
-    }
-
     suspend fun updateAlarm(alarm: Alarm) {
         alarmRepository.updateAlarm(alarm)
     }
-
 
     @SuppressLint("ScheduleExactAlarm")
     fun setAlarm(context: Context, alarm: Alarm){
