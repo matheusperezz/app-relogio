@@ -3,6 +3,7 @@ package com.vanquish.despertador.ui.fragments.alarmList
 import android.os.Build
 import android.os.Bundle
 import android.text.Editable
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -73,7 +74,7 @@ class UpdateAlarmFragment : Fragment() {
         }
 
         binding.imageButtonStartTimePicker.setOnClickListener {
-            val (hour, minute) = updateTimePickerInput(alarm)
+            val (hour, minute) = updateTimePickerInput(binding.textInputNewAlarmTime.editText?.text.toString())
             showTimePicker(
                 parentFragmentManager,
                 binding.textInputNewAlarmTime,
@@ -91,8 +92,8 @@ class UpdateAlarmFragment : Fragment() {
             editableInstance.newEditable(toHourMinuteFormat(alarm.timeString))
     }
 
-    private fun updateTimePickerInput(alarm: Alarm): Pair<Int, Int>{
-        val (hourString, minuteString) = toHourMinuteFormat(alarm.timeString).split(":")
+    private fun updateTimePickerInput(timeInput: String): Pair<Int, Int> {
+        val (hourString, minuteString) = timeInput.split(":")
         val hour = hourString.toInt()
         val minute = minuteString.toInt()
         return Pair(hour, minute)

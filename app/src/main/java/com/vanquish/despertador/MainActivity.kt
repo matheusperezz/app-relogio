@@ -9,8 +9,6 @@ import dagger.hilt.android.AndroidEntryPoint
 
 /*
  *
- *  TODO: Permitir a exclusão de alarmes
- *
  *  TODO: Implementar a tela do alarme tocando
  *
  */
