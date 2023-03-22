@@ -7,12 +7,10 @@
     <uses-permission android:name="android.permission.SCHEDULE_EXACT_ALARM" />
     <uses-permission android:name="android.permission.USE_EXACT_ALARM" />
     <uses-permission android:name="android.permission.VIBRATE" />
-    <uses-permission android:name="android.permission.NOTIFICATION"/>
-    <uses-permission android:name="com.android.alarm.permission.SET_ALARM"/>
-    <uses-permission android:name="android.permission.RECEIVE_BOOT_COMPLETED"/>
-    <uses-permission android:name="android.permission.NOTIFICATION_BROADCAST_RECEIVER_PERMISSION"/>
-    <uses-permission android:name="android.permission.FOREGROUND_SERVICE"/>
-
+    <uses-permission android:name="android.permission.NOTIFICATION" />
+    <uses-permission android:name="com.android.alarm.permission.SET_ALARM" />
+    <uses-permission android:name="android.permission.NOTIFICATION_BROADCAST_RECEIVER_PERMISSION" />
+    <uses-permission android:name="android.permission.FOREGROUND_SERVICE" />
 
     <application
         android:name=".AlarmApplication"
@@ -24,6 +22,9 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.Despertador"
         tools:targetApi="31">
+        <activity
+            android:name=".ui.activities.WakeUpActivity"
+            android:exported="false" />
 
         <receiver android:name=".AlarmReceiver" />
 
@@ -36,6 +37,7 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+
         <meta-data
             android:name="preloaded_fonts"
             android:resource="@array/preloaded_fonts" />
