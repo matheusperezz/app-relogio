@@ -9,7 +9,9 @@ import dagger.hilt.android.AndroidEntryPoint
 
 /*
  *
- *  TODO: Implementar a tela do alarme tocando
+ *  TODO: Implementar a tela do relógio/cronometro seila
+ *
+ *  TODO: Fazer as funcionalidades da tela de cronometro (alterar o tempo, zerar ou pausar)
  *
  */
 

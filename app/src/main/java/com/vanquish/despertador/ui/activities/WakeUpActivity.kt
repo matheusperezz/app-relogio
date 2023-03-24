@@ -2,7 +2,9 @@ package com.vanquish.despertador.ui.activities
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import com.vanquish.despertador.R
+import android.view.GestureDetector
+import android.view.MotionEvent
+import android.view.View
 import com.vanquish.despertador.databinding.ActivityWakeUpBinding
 
 class WakeUpActivity : AppCompatActivity() {
@@ -13,8 +15,10 @@ class WakeUpActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(binding.root)
 
-        binding.buttonFinishWakeUp.setOnClickListener {
+        binding.buttonTurnOff.setOnClickListener {
             finish()
         }
+
     }
+
 }

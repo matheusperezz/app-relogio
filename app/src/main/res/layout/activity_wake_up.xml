@@ -10,15 +10,16 @@
         android:id="@+id/textViewMain"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Acordaaaa!"
-        app:layout_constraintBottom_toTopOf="@+id/buttonFinishWakeUp"
+        android:text="Acordar"
+        android:textSize="35sp"
+        app:layout_constraintBottom_toTopOf="@+id/buttonTurnOff"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
     <Button
-        android:id="@+id/buttonFinishWakeUp"
+        android:id="@+id/buttonTurnOff"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Desligar"
@@ -27,4 +28,5 @@
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textViewMain" />
+
 </androidx.constraintlayout.widget.ConstraintLayout>
