@@ -7,12 +7,51 @@
     tools:context=".ui.fragments.WatchFragment">
 
     <TextView
-        android:id="@+id/textView"
+        android:id="@+id/textViewTimer"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Cronômetro"
+        android:text="00:00"
+        android:textSize="56sp"
+        android:textColor="@color/purple_500"
+        android:textStyle="bold"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
+
+
+    <Button
+        android:id="@+id/buttonTimerStart"
+        android:layout_width="100dp"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="16dp"
+        android:text="Iniciar"
+        app:layout_constraintBottom_toBottomOf="@+id/buttonTimerPause"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toEndOf="@+id/buttonTimerPause"
+        app:layout_constraintTop_toTopOf="@+id/buttonTimerPause" />
+
+    <Button
+        android:id="@+id/buttonTimerPause"
+        android:layout_width="100dp"
+        android:layout_height="wrap_content"
+        android:text="Pausar"
+        app:layout_constraintBottom_toBottomOf="@+id/buttonTimerZero"
+        app:layout_constraintEnd_toStartOf="@+id/buttonTimerStart"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toEndOf="@+id/buttonTimerZero"
+        app:layout_constraintTop_toTopOf="@+id/buttonTimerZero" />
+
+    <Button
+        android:id="@+id/buttonTimerZero"
+        android:layout_width="100dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginBottom="32dp"
+        android:text="Zerar"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/buttonTimerPause"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent" />
 </androidx.constraintlayout.widget.ConstraintLayout>

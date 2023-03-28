@@ -11,3 +11,10 @@ fun toHourMinuteFormat(timeString: String) : String {
     val formatter = DateTimeFormatter.ofPattern("HH:mm")
     return time.format(formatter)
 }
+
+@RequiresApi(Build.VERSION_CODES.O)
+fun toHourMinSecFormat(timeString: String) : String {
+    val time = LocalTime.parse(timeString)
+    val formatter = DateTimeFormatter.ofPattern("HH:mm:ss")
+    return time.format(formatter)
+}
