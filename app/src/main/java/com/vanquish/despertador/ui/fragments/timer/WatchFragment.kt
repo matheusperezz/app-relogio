@@ -1,4 +1,4 @@
-package com.vanquish.despertador.ui.fragments
+package com.vanquish.despertador.ui.fragments.timer
 
 import android.os.Build
 import android.os.Bundle

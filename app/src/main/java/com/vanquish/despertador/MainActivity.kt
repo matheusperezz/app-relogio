@@ -8,10 +8,11 @@ import com.vanquish.despertador.databinding.ActivityMainBinding
 import dagger.hilt.android.AndroidEntryPoint
 
 /*
+ *  TODO: Implementar o retrofit e testar requisição API
  *
- *  TODO: Implementar a tela do relógio/cronometro seila
+ *  TODO: Fazer a tela do clima
  *
- *  TODO: Fazer as funcionalidades da tela de cronometro (alterar o tempo, zerar ou pausar)
+ *  TODO: Integrar a requisição com a tela
  *
  */
 

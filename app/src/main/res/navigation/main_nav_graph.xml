@@ -25,7 +25,7 @@
         tools:layout="@layout/fragment_weather" />
     <fragment
         android:id="@+id/watchFragment"
-        android:name="com.vanquish.despertador.ui.fragments.WatchFragment"
+        android:name="com.vanquish.despertador.ui.fragments.timer.WatchFragment"
         android:label="fragment_watch"
         tools:layout="@layout/fragment_watch" />
     <fragment
