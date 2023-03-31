@@ -6,25 +6,51 @@
     android:layout_height="match_parent"
     tools:context=".ui.fragments.weather.WeatherFragment">
 
-    <Button
-        android:id="@+id/buttonGetWeather"
+    <TextView
+        android:id="@+id/textViewLocalName"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Get weather"
-        app:layout_constraintBottom_toTopOf="@+id/textViewResponse"
+        android:text="Carregando..."
+        android:textSize="18sp"
+        app:layout_constraintBottom_toTopOf="@+id/imageViewWeatherIcon"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
+    <ImageView
+        android:id="@+id/imageViewWeatherIcon"
+        android:layout_width="200dp"
+        android:layout_height="200dp"
+        android:src="@drawable/ic_cloud"
+        app:layout_constraintBottom_toTopOf="@+id/textViewTemp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textViewLocalName" />
+
     <TextView
-        android:id="@+id/textViewResponse"
+        android:id="@+id/textViewTemp"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="TextView"
+        android:textSize="40sp"
+        android:text="..."
+        app:layout_constraintBottom_toTopOf="@+id/textViewDescription"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/imageViewWeatherIcon" />
+
+    <TextView
+        android:id="@+id/textViewDescription"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Carregando.."
+        android:textSize="18sp"
+        android:layout_marginHorizontal="8dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/buttonGetWeather" />
+        app:layout_constraintTop_toBottomOf="@+id/textViewTemp" />
 </androidx.constraintlayout.widget.ConstraintLayout>

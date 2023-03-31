@@ -9,6 +9,7 @@ import androidx.fragment.app.viewModels
 import androidx.lifecycle.lifecycleScope
 import com.vanquish.despertador.database.repository.WeatherRepository
 import com.vanquish.despertador.databinding.FragmentWeatherBinding
+import com.vanquish.despertador.extensions.kelvinToCelsiusString
 import com.vanquish.despertador.ui.viewmodels.WeatherViewModel
 import com.vanquish.despertador.webclient.services.WeatherService
 import dagger.hilt.android.AndroidEntryPoint
@@ -33,14 +34,17 @@ class WeatherFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         val viewModel: WeatherViewModel by viewModels()
-        binding.buttonGetWeather.setOnClickListener {
-            lifecycleScope.launch {
-                viewModel.data.collect { weather ->
-                    binding.textViewResponse.text = weather?.main?.temp?.toString()
+        lifecycleScope.launch {
+            viewModel.data.collect { weather ->
+                weather?.let {
+                    binding.textViewLocalName.text = it.name
+                    binding.textViewTemp.text = kelvinToCelsiusString(it.main.temp)
+                    binding.textViewDescription.text = it.weather[0].description
                 }
             }
-            viewModel.fetchWeather(51.50634, -0.07379, "78e0e8846506403a80b5bf02979b4d28")
         }
+        // -23.93149692602861, -46.28754196651107
+        viewModel.fetchWeather(-23.93149692602861, -46.28754196651107, "78e0e8846506403a80b5bf02979b4d28")
     }
 
 }
