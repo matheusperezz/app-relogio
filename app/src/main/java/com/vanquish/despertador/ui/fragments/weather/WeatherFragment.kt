@@ -1,27 +1,35 @@
 package com.vanquish.despertador.ui.fragments.weather
 
+import android.Manifest
+import android.annotation.SuppressLint
+import android.content.Context
+import android.content.pm.PackageManager
+import android.location.Location
+import android.location.LocationListener
+import android.location.LocationManager
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.core.app.ActivityCompat
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.lifecycleScope
-import com.vanquish.despertador.database.repository.WeatherRepository
 import com.vanquish.despertador.databinding.FragmentWeatherBinding
 import com.vanquish.despertador.extensions.kelvinToCelsiusString
 import com.vanquish.despertador.ui.viewmodels.WeatherViewModel
-import com.vanquish.despertador.webclient.services.WeatherService
 import dagger.hilt.android.AndroidEntryPoint
 import dagger.hilt.android.scopes.FragmentScoped
 import kotlinx.coroutines.launch
-import retrofit2.create
 
 @AndroidEntryPoint
 @FragmentScoped
 class WeatherFragment : Fragment() {
-
+    private val viewModel: WeatherViewModel by viewModels()
     private lateinit var binding: FragmentWeatherBinding
+    private lateinit var locationManager: LocationManager
+    private lateinit var locationListener: UserLocation
+    private val REQUEST_CODE_LOCATION_PERMISSION = 1
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -31,9 +39,9 @@ class WeatherFragment : Fragment() {
         return binding.root
     }
 
+    @SuppressLint("ServiceCast")
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        val viewModel: WeatherViewModel by viewModels()
         lifecycleScope.launch {
             viewModel.data.collect { weather ->
                 weather?.let {
@@ -43,8 +51,45 @@ class WeatherFragment : Fragment() {
                 }
             }
         }
-        // -23.93149692602861, -46.28754196651107
-        viewModel.fetchWeather(-23.93149692602861, -46.28754196651107, "78e0e8846506403a80b5bf02979b4d28")
+
+        locationManager =
+            requireActivity().getSystemService(Context.LOCATION_SERVICE) as LocationManager
+        locationListener = UserLocation()
+
+        if (ActivityCompat.checkSelfPermission(
+                requireContext(),
+                Manifest.permission.ACCESS_FINE_LOCATION
+            ) != PackageManager.PERMISSION_GRANTED && ActivityCompat.checkSelfPermission(
+                requireContext(),
+                Manifest.permission.ACCESS_COARSE_LOCATION
+            ) != PackageManager.PERMISSION_GRANTED
+        ) {
+            ActivityCompat.requestPermissions(
+                requireActivity(),
+                arrayOf(Manifest.permission.ACCESS_FINE_LOCATION, Manifest.permission.ACCESS_COARSE_LOCATION),
+                REQUEST_CODE_LOCATION_PERMISSION
+            )
+            return
+        }
+        locationManager.requestLocationUpdates(
+            LocationManager.GPS_PROVIDER,
+            0,
+            100f,
+            locationListener
+        )
+    }
+
+    inner class UserLocation : LocationListener {
+        override fun onLocationChanged(location: Location) {
+            val latitude = location.latitude
+            val longitude = location.longitude
+            viewModel.fetchWeather(latitude, longitude, "78e0e8846506403a80b5bf02979b4d28")
+        }
+    }
+
+    override fun onPause() {
+        super.onPause()
+        locationManager.removeUpdates(locationListener)
     }
 
 }

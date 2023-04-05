@@ -8,9 +8,6 @@ import com.vanquish.despertador.databinding.ActivityMainBinding
 import dagger.hilt.android.AndroidEntryPoint
 
 /*
- *  TODO: Implementar o retrofit e testar requisição API
- *
- *  TODO: Fazer a tela do clima
  *
  *  TODO: Integrar a requisição com a tela
  *
