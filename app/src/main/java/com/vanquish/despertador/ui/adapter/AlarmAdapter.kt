@@ -1,11 +1,8 @@
 package com.vanquish.despertador.ui.adapter
 
-import android.annotation.SuppressLint
 import android.os.Build
-import android.util.SparseBooleanArray
 import android.view.LayoutInflater
 import android.view.ViewGroup
-import android.widget.Switch
 import android.widget.TextView
 import androidx.annotation.RequiresApi
 import androidx.recyclerview.widget.RecyclerView

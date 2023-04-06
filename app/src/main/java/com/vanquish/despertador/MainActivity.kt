@@ -9,8 +9,6 @@ import dagger.hilt.android.AndroidEntryPoint
 
 /*
  *
- *  TODO: Consertar Bug - Estado do Switch no AlarmList
- *
  *  TODO: Consertar Bug - Ativação do Alarme
  *
  *  TODO: Consertar Bug - Atualização do clima só é feita ao ligar o onViewCreated
