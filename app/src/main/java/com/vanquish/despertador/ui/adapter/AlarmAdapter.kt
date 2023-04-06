@@ -1,5 +1,6 @@
 package com.vanquish.despertador.ui.adapter
 
+import android.annotation.SuppressLint
 import android.os.Build
 import android.util.SparseBooleanArray
 import android.view.LayoutInflater
@@ -19,28 +20,23 @@ class AlarmAdapter(
     private val onClick: (Alarm) -> Unit = {},
 ) : RecyclerView.Adapter<AlarmAdapter.ViewHolder>() {
 
-    private val alarmStateArray: SparseBooleanArray = SparseBooleanArray()
 
     inner class ViewHolder(itemView: ResItemAlarmBinding) : RecyclerView.ViewHolder(itemView.root) {
 
         private val textViewAlarmTitle: TextView
         private val textViewAlarmHour: TextView
-        private val switchAlarm: Switch
+
 
         init {
             textViewAlarmTitle = itemView.textViewAlarmTitle
             textViewAlarmHour = itemView.textViewAlarmHour
-            switchAlarm = itemView.switchAlarm
         }
 
 
         fun bind(alarm: Alarm, position: Int, onClick: (Alarm) -> Unit) {
             textViewAlarmTitle.text = alarm.label
             textViewAlarmHour.text = toHourMinuteFormat(alarm.timeString)
-            switchAlarm.isChecked = alarmStateArray[position, false]
-            switchAlarm.setOnClickListener {
-                alarmStateArray.put(position, switchAlarm.isChecked)
-            }
+
             itemView.setOnClickListener {
                 onClick(alarm)
             }
@@ -67,10 +63,6 @@ class AlarmAdapter(
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         holder.bind(alarms[position], position, onClick)
-    }
-
-    fun getAlarmStateArray(): SparseBooleanArray {
-        return alarmStateArray
     }
 
 }
