@@ -56,6 +56,25 @@ class WeatherFragment : Fragment() {
             requireActivity().getSystemService(Context.LOCATION_SERVICE) as LocationManager
         locationListener = UserLocation()
 
+        requestLocationPermission()
+
+
+    }
+
+    inner class UserLocation : LocationListener {
+        override fun onLocationChanged(location: Location) {
+            val latitude = location.latitude
+            val longitude = location.longitude
+            viewModel.fetchWeather(latitude, longitude, "78e0e8846506403a80b5bf02979b4d28")
+        }
+    }
+
+    override fun onPause() {
+        super.onPause()
+        locationManager.removeUpdates(locationListener)
+    }
+
+    private fun requestLocationPermission(){
         if (ActivityCompat.checkSelfPermission(
                 requireContext(),
                 Manifest.permission.ACCESS_FINE_LOCATION
@@ -71,25 +90,13 @@ class WeatherFragment : Fragment() {
             )
             return
         }
+
         locationManager.requestLocationUpdates(
             LocationManager.GPS_PROVIDER,
             0,
             100f,
             locationListener
         )
-    }
-
-    inner class UserLocation : LocationListener {
-        override fun onLocationChanged(location: Location) {
-            val latitude = location.latitude
-            val longitude = location.longitude
-            viewModel.fetchWeather(latitude, longitude, "78e0e8846506403a80b5bf02979b4d28")
-        }
-    }
-
-    override fun onPause() {
-        super.onPause()
-        locationManager.removeUpdates(locationListener)
     }
 
 }
