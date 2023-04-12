@@ -3,15 +3,18 @@ package com.vanquish.despertador.ui.fragments.timer
 import android.os.Build
 import android.os.Bundle
 import android.os.Handler
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.annotation.RequiresApi
+import androidx.fragment.app.Fragment
 import com.vanquish.despertador.databinding.FragmentWatchBinding
-import com.vanquish.despertador.extensions.toHourMinSecFormat
+import com.vanquish.despertador.ui.utils.toHourMinSecFormat
 import dagger.hilt.android.AndroidEntryPoint
 import dagger.hilt.android.scopes.FragmentScoped
+import kotlinx.coroutines.delay
+import kotlinx.coroutines.launch
+import kotlinx.coroutines.runBlocking
 import java.time.LocalTime
 
 @AndroidEntryPoint
@@ -49,6 +52,12 @@ class WatchFragment : Fragment() {
 
 
         binding.buttonTimerStart.setOnClickListener {
+            runBlocking {
+                launch {
+                    delay(100)
+                    addOneSecondOnTimer()
+                }
+            }
             handler.postDelayed(runnable, 1000)
         }
 
@@ -72,7 +81,7 @@ class WatchFragment : Fragment() {
     @RequiresApi(Build.VERSION_CODES.O)
     private fun zeroTimer(){
         timer = LocalTime.of(0, 0, 0)
-        timerString = timer.toString()
+        timerString = "00:00:00"
         binding.textViewTimer.text = timerString
     }
 }

@@ -8,7 +8,7 @@ import androidx.annotation.RequiresApi
 import androidx.recyclerview.widget.RecyclerView
 import com.vanquish.despertador.database.models.Alarm
 import com.vanquish.despertador.databinding.ResItemAlarmBinding
-import com.vanquish.despertador.extensions.toHourMinuteFormat
+import com.vanquish.despertador.ui.utils.toHourMinuteFormat
 
 @RequiresApi(Build.VERSION_CODES.O)
 class AlarmAdapter(

@@ -3,7 +3,7 @@
     <item
         android:id="@+id/alarmClockFragment"
         android:icon="@drawable/ic_alarm"
-        android:title="Despertador" />
+        android:title="Alarm" />
 
     <item
         android:id="@+id/watchFragment"
@@ -13,5 +13,5 @@
     <item
         android:id="@+id/weatherFragment"
         android:icon="@drawable/ic_cloud"
-        android:title="Clima" />
+        android:title="Weather" />
 </menu>

@@ -1,4 +1,4 @@
-package com.vanquish.despertador.extensions
+package com.vanquish.despertador.ui.utils
 
 fun kelvinToCelsiusString(temp: Double) : String {
     val celsius = temp - 273.15

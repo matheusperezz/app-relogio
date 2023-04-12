@@ -16,7 +16,7 @@ import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.lifecycleScope
 import com.vanquish.despertador.databinding.FragmentWeatherBinding
-import com.vanquish.despertador.extensions.kelvinToCelsiusString
+import com.vanquish.despertador.ui.utils.kelvinToCelsiusString
 import com.vanquish.despertador.ui.viewmodels.WeatherViewModel
 import dagger.hilt.android.AndroidEntryPoint
 import dagger.hilt.android.scopes.FragmentScoped

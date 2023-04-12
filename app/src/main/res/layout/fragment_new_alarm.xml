@@ -12,7 +12,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="16dp"
-        android:text="Novo alarme"
+        android:text="New alarm"
         android:textSize="22sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -32,7 +32,7 @@
         <com.google.android.material.textfield.TextInputEditText
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="Nome do alarme" />
+            android:hint="Alarm name" />
 
     </com.google.android.material.textfield.TextInputLayout>
 
@@ -51,7 +51,7 @@
         <com.google.android.material.textfield.TextInputEditText
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="Exemplo: 23:59"
+            android:hint="Ex: 23:59"
             android:inputType="time" />
     </com.google.android.material.textfield.TextInputLayout>
 
@@ -73,7 +73,7 @@
         android:layout_width="120dp"
         android:layout_height="wrap_content"
         android:layout_marginBottom="16dp"
-        android:text="Salvar"
+        android:text="Save"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
@@ -83,7 +83,7 @@
         android:id="@+id/buttonNewAlarmCancel"
         android:layout_width="120dp"
         android:layout_height="wrap_content"
-        android:text="Cancelar"
+        android:text="Cancel"
         app:layout_constraintBottom_toBottomOf="@+id/buttonNewAlarmSave"
         app:layout_constraintEnd_toStartOf="@+id/buttonNewAlarmSave"
         app:layout_constraintHorizontal_bias="0.5"

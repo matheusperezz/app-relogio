@@ -1,4 +1,4 @@
-package com.vanquish.despertador.extensions
+package com.vanquish.despertador.ui.utils
 
 import android.os.Build
 import androidx.annotation.RequiresApi

@@ -9,8 +9,6 @@ import dagger.hilt.android.AndroidEntryPoint
 
 /*
  *
- *  TODO: Consertar Bug - Ativação do Alarme
- *
  *  TODO: Consertar Bug - Atualização do clima só é feita ao ligar o onViewCreated
  *
  */
@@ -33,4 +31,5 @@ class MainActivity : AppCompatActivity() {
 
     private fun getNavHostFragment(): NavHostFragment =
         supportFragmentManager.findFragmentById(binding.fragmentContainerView.id) as NavHostFragment
+
 }
