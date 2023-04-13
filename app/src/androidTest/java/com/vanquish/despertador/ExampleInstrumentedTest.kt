@@ -1,16 +1,20 @@
 package com.vanquish.despertador
 
 import android.content.Context
+import androidx.arch.core.executor.testing.InstantTaskExecutorRule
 import androidx.room.Room
+import androidx.test.core.app.ApplicationProvider
 import androidx.test.ext.junit.runners.AndroidJUnit4
 import androidx.test.platform.app.InstrumentationRegistry
 import com.vanquish.despertador.database.AppDatabase
 import com.vanquish.despertador.database.dao.AlarmDao
 import com.vanquish.despertador.database.models.Alarm
-import dagger.hilt.android.testing.CustomTestApplication
-import dagger.hilt.android.testing.HiltAndroidRule
-import dagger.hilt.android.testing.HiltAndroidTest
-import junit.framework.TestCase
+import com.vanquish.despertador.database.repository.AlarmRepository
+import com.vanquish.despertador.ui.viewmodels.AlarmClockViewModel
+import kotlinx.coroutines.flow.first
+import kotlinx.coroutines.flow.single
+import kotlinx.coroutines.flow.singleOrNull
+import kotlinx.coroutines.launch
 import kotlinx.coroutines.runBlocking
 import org.junit.After
 import org.junit.Assert.*
@@ -18,54 +22,58 @@ import org.junit.Before
 import org.junit.Rule
 import org.junit.Test
 import org.junit.runner.RunWith
-import javax.inject.Inject
 
 /**
  * Instrumented test, which will execute on an Android device.
  *
  * See [testing documentation](http://d.android.com/tools/testing).
  */
-@HiltAndroidTest
+
 @RunWith(AndroidJUnit4::class)
-@CustomTestApplication(HiltTestApplication::class)
 class ExampleInstrumentedTest {
 
     private lateinit var database: AppDatabase
-    private lateinit var alarmDao: AlarmDao
+    private lateinit var dao: AlarmDao
+    private lateinit var repository: AlarmRepository
+    private lateinit var viewModel: AlarmClockViewModel
 
     @get:Rule
-    val hiltRule = HiltAndroidRule(this)
-
-    @Inject
-    lateinit var context: Context
+    val instantTaskExecutorRule = InstantTaskExecutorRule()
 
     @Before
-    fun setup() {
-        hiltRule.inject()
-        val appContext = context.applicationContext
-        database = Room.inMemoryDatabaseBuilder(appContext, AppDatabase::class.java)
-            .allowMainThreadQueries().build()
-        alarmDao = database.alarmDao()
+    fun setup(){
+        val context = ApplicationProvider.getApplicationContext<Context>()
+        database = Room.inMemoryDatabaseBuilder(context, AppDatabase::class.java).build()
+        dao = database.alarmDao()
+        repository = AlarmRepository(dao)
+        viewModel = AlarmClockViewModel(repository)
     }
 
-
     @After
-    fun teardown() {
+    fun teardown(){
         database.close()
     }
 
     @Test
-    fun insertAlarmOnDatabase() = runBlocking {
-        val alarm = Alarm(
-            timeString = "08:30",
-            daysOfWeekString = "Segunda, Quarta, Sexta",
-            soundUriString = "content://media/external/audio/media/123",
-            label = "Alarme 1"
-        )
-        alarmDao.insertAlarm(alarm)
-        val retrievedAlarm = alarmDao.getAlarm(alarm.id)
-        TestCase.assertEquals(alarm, retrievedAlarm)
+    fun testSaveAlarmOnDatabase(){
+        runBlocking {
+            val exampleAlarm = Alarm(
+                timeString = "07:30",
+                daysOfWeekString = "Monday, Wednesday, Friday",
+                soundUriString = "content://com.android.providers.media.documents/document/audio%3A10",
+                label = "Wake up!"
+            )
+            launch {
+                dao.insertAlarm(exampleAlarm)
+            }
+            val savedAlarm = dao.getAlarm(exampleAlarm.id).singleOrNull()
+            savedAlarm?.let { savedAlarm ->
+                assertEquals(exampleAlarm, savedAlarm)
+            }
+
+        }
     }
+
     @Test
     fun useAppContext() {
         // Context of the app under test.
