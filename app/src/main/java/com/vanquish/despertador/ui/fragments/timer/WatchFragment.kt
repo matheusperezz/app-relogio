@@ -3,13 +3,17 @@ package com.vanquish.despertador.ui.fragments.timer
 import android.os.Build
 import android.os.Bundle
 import android.os.Handler
+import android.os.SystemClock
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.annotation.RequiresApi
 import androidx.fragment.app.Fragment
+import androidx.fragment.app.viewModels
+import androidx.lifecycle.lifecycleScope
 import com.vanquish.despertador.databinding.FragmentWatchBinding
 import com.vanquish.despertador.ui.utils.toHourMinSecFormat
+import com.vanquish.despertador.ui.viewmodels.WatchViewModel
 import dagger.hilt.android.AndroidEntryPoint
 import dagger.hilt.android.scopes.FragmentScoped
 import kotlinx.coroutines.delay
@@ -23,13 +27,6 @@ class WatchFragment : Fragment() {
 
     private lateinit var binding: FragmentWatchBinding
 
-    companion object {
-        @RequiresApi(Build.VERSION_CODES.O)
-        var timer: LocalTime = LocalTime.of(0, 0, 0)
-        @RequiresApi(Build.VERSION_CODES.O)
-        var timerString = timer.toString()
-    }
-
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -41,47 +38,26 @@ class WatchFragment : Fragment() {
     @RequiresApi(Build.VERSION_CODES.O)
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        val handler = Handler()
-
-        val runnable = object : Runnable {
-            override fun run() {
-                addOneSecondOnTimer()
-                handler.postDelayed(this, 1000)
-            }
-        }
-
+        val viewModel: WatchViewModel by viewModels()
 
         binding.buttonTimerStart.setOnClickListener {
-            runBlocking {
-                launch {
-                    delay(100)
-                    addOneSecondOnTimer()
-                }
-            }
-            handler.postDelayed(runnable, 1000)
-        }
-
-        binding.buttonTimerPause.setOnClickListener {
-            handler.removeCallbacks(runnable)
+            viewModel.startPauseTimer()
         }
 
         binding.buttonTimerZero.setOnClickListener {
-            zeroTimer()
-            handler.removeCallbacks(runnable)
+            viewModel.resetTimer()
         }
-    }
 
-    @RequiresApi(Build.VERSION_CODES.O)
-    private fun addOneSecondOnTimer(){
-        timer = timer.plusSeconds(1)
-        timerString = timer.toString()
-        binding.textViewTimer.text = toHourMinSecFormat(timerString)
-    }
+        lifecycleScope.launchWhenStarted {
+            viewModel.isRunning.collect {
+                binding.buttonTimerStart.text = if (it) "Pause" else "Start"
+            }
+        }
 
-    @RequiresApi(Build.VERSION_CODES.O)
-    private fun zeroTimer(){
-        timer = LocalTime.of(0, 0, 0)
-        timerString = "00:00:00"
-        binding.textViewTimer.text = timerString
+        lifecycleScope.launchWhenStarted {
+            viewModel.timerString.collect {
+                binding.textViewTimer.text = it
+            }
+        }
     }
 }

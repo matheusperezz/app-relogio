@@ -10,8 +10,8 @@
         android:id="@+id/textViewTimer"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="00:00:00"
         android:textColor="@color/purple_500"
+        android:text="00:00"
         android:textSize="56sp"
         android:textStyle="bold"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -24,34 +24,19 @@
         android:id="@+id/buttonTimerStart"
         android:layout_width="100dp"
         android:layout_height="wrap_content"
-        android:layout_marginEnd="16dp"
         android:text="Start"
-        app:layout_constraintBottom_toBottomOf="@+id/buttonTimerPause"
+        android:layout_marginBottom="16dp"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintStart_toEndOf="@+id/buttonTimerPause"
-        app:layout_constraintTop_toTopOf="@+id/buttonTimerPause" />
-
-    <Button
-        android:id="@+id/buttonTimerPause"
-        android:layout_width="100dp"
-        android:layout_height="wrap_content"
-        android:text="Pause"
-        app:layout_constraintBottom_toBottomOf="@+id/buttonTimerZero"
-        app:layout_constraintEnd_toStartOf="@+id/buttonTimerStart"
-        app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintStart_toEndOf="@+id/buttonTimerZero"
-        app:layout_constraintTop_toTopOf="@+id/buttonTimerZero" />
+        app:layout_constraintStart_toEndOf="@+id/buttonTimerZero" />
 
     <Button
         android:id="@+id/buttonTimerZero"
         android:layout_width="100dp"
         android:layout_height="wrap_content"
-        android:layout_marginStart="16dp"
-        android:layout_marginBottom="32dp"
         android:text="Reset"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toStartOf="@+id/buttonTimerPause"
-        app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintStart_toStartOf="parent" />
+        app:layout_constraintBottom_toBottomOf="@+id/buttonTimerStart"
+        app:layout_constraintEnd_toStartOf="@id/buttonTimerStart"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/buttonTimerStart" />
 </androidx.constraintlayout.widget.ConstraintLayout>
