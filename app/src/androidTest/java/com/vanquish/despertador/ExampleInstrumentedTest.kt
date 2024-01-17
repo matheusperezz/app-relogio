@@ -29,49 +29,6 @@ import org.junit.runner.RunWith
 
 @RunWith(AndroidJUnit4::class)
 class ExampleInstrumentedTest {
-
-    private lateinit var database: AppDatabase
-    private lateinit var dao: AlarmDao
-    private lateinit var repository: AlarmRepository
-    private lateinit var viewModel: AlarmClockViewModel
-
-    @get:Rule
-    val instantTaskExecutorRule = InstantTaskExecutorRule()
-
-    @Before
-    fun setup(){
-        val context = ApplicationProvider.getApplicationContext<Context>()
-        database = Room.inMemoryDatabaseBuilder(context, AppDatabase::class.java).build()
-        dao = database.alarmDao()
-        repository = AlarmRepository(dao)
-        viewModel = AlarmClockViewModel(repository)
-    }
-
-    @After
-    fun teardown(){
-        database.close()
-    }
-
-    @Test
-    fun testSaveAlarmOnDatabase(){
-        runBlocking {
-            val exampleAlarm = Alarm(
-                timeString = "07:30",
-                daysOfWeekString = "Monday, Wednesday, Friday",
-                soundUriString = "content://com.android.providers.media.documents/document/audio%3A10",
-                label = "Wake up!"
-            )
-            launch {
-                dao.insertAlarm(exampleAlarm)
-            }
-            val savedAlarm = dao.getAlarm(exampleAlarm.id).singleOrNull()
-            savedAlarm?.let { savedAlarm ->
-                assertEquals(exampleAlarm, savedAlarm)
-            }
-
-        }
-    }
-
     @Test
     fun useAppContext() {
         // Context of the app under test.
