@@ -1,7 +1,7 @@
-package com.vanquish.despertador.database.repository
+package com.vanquish.despertador.data.repository
 
-import com.vanquish.despertador.database.models.WeatherResponse
-import com.vanquish.despertador.webclient.services.WeatherService
+import com.vanquish.despertador.data.models.WeatherResponse
+import com.vanquish.despertador.data.webclient.services.WeatherService
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.flow

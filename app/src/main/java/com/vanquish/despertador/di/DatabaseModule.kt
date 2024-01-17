@@ -2,10 +2,10 @@ package com.vanquish.despertador.di
 
 import android.content.Context
 import androidx.room.Room
-import com.vanquish.despertador.database.AppDatabase
-import com.vanquish.despertador.database.converters.Converters
-import com.vanquish.despertador.database.dao.AlarmDao
-import com.vanquish.despertador.database.migrations.MIGRATION_1_2
+import com.vanquish.despertador.data.AppDatabase
+import com.vanquish.despertador.data.converters.Converters
+import com.vanquish.despertador.data.dao.AlarmDao
+import com.vanquish.despertador.data.migrations.MIGRATION_1_2
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn

@@ -1,11 +1,11 @@
-package com.vanquish.despertador.database
+package com.vanquish.despertador.data
 
 import androidx.room.Database
 import androidx.room.RoomDatabase
 import androidx.room.TypeConverters
-import com.vanquish.despertador.database.converters.Converters
-import com.vanquish.despertador.database.dao.AlarmDao
-import com.vanquish.despertador.database.models.Alarm
+import com.vanquish.despertador.data.converters.Converters
+import com.vanquish.despertador.data.dao.AlarmDao
+import com.vanquish.despertador.data.models.Alarm
 
 @Database(entities = [Alarm::class], version = 2)
 @TypeConverters(Converters::class)

@@ -1,6 +1,6 @@
-package com.vanquish.despertador.webclient.services
+package com.vanquish.despertador.data.webclient.services
 
-import com.vanquish.despertador.database.models.WeatherResponse
+import com.vanquish.despertador.data.models.WeatherResponse
 import retrofit2.Response
 import retrofit2.http.GET
 import retrofit2.http.Query

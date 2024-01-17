@@ -1,4 +1,4 @@
-package com.vanquish.despertador.database.migrations
+package com.vanquish.despertador.data.migrations
 
 import androidx.room.migration.Migration
 import androidx.sqlite.db.SupportSQLiteDatabase

@@ -1,8 +1,7 @@
-package com.vanquish.despertador.database.repository
+package com.vanquish.despertador.data.repository
 
-import com.vanquish.despertador.database.dao.AlarmDao
-import com.vanquish.despertador.database.models.Alarm
-import com.vanquish.despertador.database.models.AlarmNew
+import com.vanquish.despertador.data.dao.AlarmDao
+import com.vanquish.despertador.data.models.Alarm
 import kotlinx.coroutines.flow.Flow
 import javax.inject.Inject
 

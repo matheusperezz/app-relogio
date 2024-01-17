@@ -1,4 +1,4 @@
-package com.vanquish.despertador.database.dao
+package com.vanquish.despertador.data.dao
 
 import androidx.room.Dao
 import androidx.room.Delete
@@ -6,7 +6,7 @@ import androidx.room.Insert
 import androidx.room.OnConflictStrategy
 import androidx.room.Query
 import androidx.room.Update
-import com.vanquish.despertador.database.models.Alarm
+import com.vanquish.despertador.data.models.Alarm
 import kotlinx.coroutines.flow.Flow
 
 @Dao

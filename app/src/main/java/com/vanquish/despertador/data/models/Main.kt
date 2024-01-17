@@ -1,4 +1,4 @@
-package com.vanquish.despertador.database.models
+package com.vanquish.despertador.data.models
 
 data class Main(
     val temp: Double,

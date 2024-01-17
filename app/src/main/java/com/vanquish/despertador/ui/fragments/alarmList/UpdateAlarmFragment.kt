@@ -11,7 +11,7 @@ import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
-import com.vanquish.despertador.database.models.Alarm
+import com.vanquish.despertador.data.models.Alarm
 import com.vanquish.despertador.databinding.FragmentUpdateAlarmBinding
 import com.vanquish.despertador.ui.utils.toHourMinuteFormat
 import com.vanquish.despertador.ui.utils.showTimePicker

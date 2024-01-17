@@ -1,6 +1,6 @@
-package com.vanquish.despertador.webclient
+package com.vanquish.despertador.data.webclient
 
-import com.vanquish.despertador.webclient.services.WeatherService
+import com.vanquish.despertador.data.webclient.services.WeatherService
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
 

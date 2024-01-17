@@ -7,8 +7,8 @@ import android.content.Context
 import android.content.Intent
 import androidx.lifecycle.ViewModel
 import com.vanquish.despertador.AlarmReceiver
-import com.vanquish.despertador.database.models.Alarm
-import com.vanquish.despertador.database.repository.AlarmRepository
+import com.vanquish.despertador.data.models.Alarm
+import com.vanquish.despertador.data.repository.AlarmRepository
 import dagger.hilt.android.lifecycle.HiltViewModel
 import java.util.Calendar
 import javax.inject.Inject

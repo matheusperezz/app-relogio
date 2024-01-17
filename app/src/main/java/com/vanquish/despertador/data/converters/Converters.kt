@@ -1,4 +1,4 @@
-package com.vanquish.despertador.database.converters
+package com.vanquish.despertador.data.converters
 
 import android.os.Build
 import androidx.annotation.RequiresApi

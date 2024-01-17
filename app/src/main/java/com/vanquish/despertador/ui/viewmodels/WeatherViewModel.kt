@@ -3,8 +3,8 @@ package com.vanquish.despertador.ui.viewmodels
 import android.util.Log
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.vanquish.despertador.database.models.WeatherResponse
-import com.vanquish.despertador.database.repository.WeatherRepository
+import com.vanquish.despertador.data.models.WeatherResponse
+import com.vanquish.despertador.data.repository.WeatherRepository
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow

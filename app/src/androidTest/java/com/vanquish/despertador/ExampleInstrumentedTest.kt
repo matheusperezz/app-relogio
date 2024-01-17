@@ -6,13 +6,11 @@ import androidx.room.Room
 import androidx.test.core.app.ApplicationProvider
 import androidx.test.ext.junit.runners.AndroidJUnit4
 import androidx.test.platform.app.InstrumentationRegistry
-import com.vanquish.despertador.database.AppDatabase
-import com.vanquish.despertador.database.dao.AlarmDao
-import com.vanquish.despertador.database.models.Alarm
-import com.vanquish.despertador.database.repository.AlarmRepository
+import com.vanquish.despertador.data.AppDatabase
+import com.vanquish.despertador.data.dao.AlarmDao
+import com.vanquish.despertador.data.models.Alarm
+import com.vanquish.despertador.data.repository.AlarmRepository
 import com.vanquish.despertador.ui.viewmodels.AlarmClockViewModel
-import kotlinx.coroutines.flow.first
-import kotlinx.coroutines.flow.single
 import kotlinx.coroutines.flow.singleOrNull
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.runBlocking

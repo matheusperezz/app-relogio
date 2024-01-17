@@ -12,8 +12,8 @@ import androidx.lifecycle.ViewModel
 import androidx.navigation.NavController
 import com.vanquish.despertador.AlarmReceiver
 import com.vanquish.despertador.R
-import com.vanquish.despertador.database.models.Alarm
-import com.vanquish.despertador.database.repository.AlarmRepository
+import com.vanquish.despertador.data.models.Alarm
+import com.vanquish.despertador.data.repository.AlarmRepository
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.Flow
 import java.util.Calendar

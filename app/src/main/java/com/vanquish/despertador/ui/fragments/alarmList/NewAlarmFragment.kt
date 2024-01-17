@@ -10,9 +10,7 @@ import androidx.annotation.RequiresApi
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
-import com.google.android.material.timepicker.MaterialTimePicker
-import com.google.android.material.timepicker.TimeFormat
-import com.vanquish.despertador.database.models.Alarm
+import com.vanquish.despertador.data.models.Alarm
 import com.vanquish.despertador.databinding.FragmentNewAlarmBinding
 import com.vanquish.despertador.ui.utils.showTimePicker
 import com.vanquish.despertador.ui.viewmodels.AlarmClockViewModel
@@ -20,7 +18,6 @@ import dagger.hilt.android.AndroidEntryPoint
 import dagger.hilt.android.scopes.FragmentScoped
 import kotlinx.coroutines.launch
 import java.time.DayOfWeek
-import java.util.Locale
 
 @RequiresApi(Build.VERSION_CODES.O)
 @AndroidEntryPoint

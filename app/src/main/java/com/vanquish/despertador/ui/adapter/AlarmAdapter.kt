@@ -6,7 +6,7 @@ import android.view.ViewGroup
 import android.widget.TextView
 import androidx.annotation.RequiresApi
 import androidx.recyclerview.widget.RecyclerView
-import com.vanquish.despertador.database.models.Alarm
+import com.vanquish.despertador.data.models.Alarm
 import com.vanquish.despertador.databinding.ResItemAlarmBinding
 import com.vanquish.despertador.ui.utils.toHourMinuteFormat
 
